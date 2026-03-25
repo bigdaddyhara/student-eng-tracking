@@ -1,59 +1,42 @@
-# Education Platform
+# CognitivePulse Foundation
 
 ## Overview
-The Education Platform is a web-based system designed to facilitate learning and teaching through a dedicated interface for students and teachers. This project aims to provide a seamless experience for both users while incorporating real-time communication, data handling, AI/vision processing, and analytics.
+CognitivePulse is an AI-powered online classroom companion with two user-facing products:
+- Student Client: captures browser-local facial landmark signals and one-tap feedback actions.
+- Teacher Dashboard: consumes live class signals, computes class pulse views, and surfaces alerts and suggestions.
 
-## Directory Structure
-The project is organized into several key directories:
+This repository is currently in a scaffold-only phase.
+No feature implementation is included yet.
 
-- **frontend**: Contains all frontend-related code.
-  - **student**: Components and pages for the student-facing interface.
-  - **teacher**: Components and pages for the teacher-facing interface.
-  - **shared-ui**: Shared UI components used by both student and teacher interfaces.
+## Real-Time and Privacy Baseline
+- Transport: MQTT over WebSockets.
+- Student browsers publish numeric engagement scores and explicit feedback events.
+- Teacher dashboard subscribes to classroom topics as the intelligence consumer.
+- Raw video never leaves the student browser.
 
-- **backend**: Contains all backend-related code.
-  - **api**: API endpoints and routing.
-  - **services**: Various service modules.
-    - **realtime**: Real-time communication services.
-    - **data**: Data handling services.
-    - **ai-vision**: AI and vision processing services.
-    - **analytics**: Analytics services.
-  - **workers**: Background workers and tasks.
+## Foundation Structure
+- frontend/student-client: student-side product surface.
+- frontend/teacher-dashboard: teacher-side product surface.
+- shared/communication/mqtt: shared real-time contracts, topics, and serializers.
+- backend/services/ai-vision: AI and vision concern boundary.
+- backend/services/intelligence-fusion: data fusion and intelligence concern.
+- backend/services/persistence-history: persistence and history concern.
+- shared/config: shared environment, MQTT, and privacy configuration boundary.
+- docs: architecture and decision records.
 
-- **shared**: Shared resources and utilities.
-  - **communication**: Shared communication protocols and utilities.
-  - **data-models**: Shared data models and schemas.
-  - **ui-components**: Shared UI components.
-  - **config**: Configuration files and settings.
-  - **utils**: Utility functions and helpers.
+## Reference Documents
+- docs/architecture/cognitivepulse-foundation.md
+- docs/architecture/cognitivepulse-modules-and-contracts.md
+- docs/architecture/cognitivepulse-communication-and-intelligence-behavior.md
+- docs/decisions/ADR-0001-local-vision-and-signal-only.md
+- tests/README.md
 
-- **assets**: Static assets for the project.
-  - **fonts**: Font files.
-  - **media**: Media files such as images and videos.
+## Workspace Scripts
+- npm run dev:student
+- npm run dev:teacher
+- npm run dev:ingest
+- npm run lint
 
-- **deployment**: Deployment-related configurations and scripts.
-  - **docker**: Docker configurations and files.
-  - **kubernetes**: Kubernetes configurations and files.
-  - **scripts**: Deployment scripts.
-
-- **docs**: Project documentation.
-
-- **tests**: Testing-related files.
-  - **frontend**: Frontend tests.
-  - **backend**: Backend tests.
-  - **integration**: Integration tests.
-
-## Getting Started
-To get started with the project, clone the repository and install the necessary dependencies:
-
-```bash
-git clone <repository-url>
-cd education-platform
-npm install
-```
-
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
-
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+## Current Status
+Project structure and module boundaries are established.
+Implementation modules, runtime wiring, and tests will be added in later phases.
